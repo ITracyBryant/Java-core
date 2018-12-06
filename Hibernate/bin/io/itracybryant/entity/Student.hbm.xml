@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="io.itracybryant.entity.Student" table="student">
+		<id name="sid" column="sid" type="java.lang.Integer">
+			<generator class="increment"></generator>
+		</id>
+		<property name="sname" type="java.lang.String">
+			<column name="sname" length="20" not-null="true"></column>
+		</property>
+		<property name="sex">
+			<column name="sex"></column>
+		</property>
+		<!-- 配置双向多对一关联关系 -->
+		<many-to-one name="grade" class="io.itracybryant.entity.Grade" column="gid" cascade="all"></many-to-one>
+	</class>
+</hibernate-mapping>

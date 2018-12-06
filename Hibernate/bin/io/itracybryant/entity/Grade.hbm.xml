@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="io.itracybryant.entity.Grade" table="grade">
+		<!-- 读写并发策略 -->
+		<!--<cache usage="read-write"/> -->
+		<id name="gid" column="gid" type="java.lang.Integer">
+			<generator class="increment"></generator>
+		</id>
+		<property name="gname" type="java.lang.String">
+			<column name="gname" length="20" not-null="true"></column>
+		</property>
+		<property name="gdesc">
+			<column name="gdesc"></column>
+		</property>
+		<!-- 配置双向一对多关联关系 ，inverse为关联关系控制方向设为true，由多方维护关联关系-->
+		<set name="students" table="student" inverse="true" cascade="save-update" lazy="true">
+			<!-- 指定关联的外键列 -->
+			<key column="gid"></key>
+			<one-to-many class="io.itracybryant.entity.Student"/>
+		</set>
+	</class>
+</hibernate-mapping>
