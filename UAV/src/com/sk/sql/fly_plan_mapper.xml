@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.sk.dao.Fly_plan_dao">
+	<select id="findAll" resultType="entity.Fly_plan">
+		select * from fly_plan where status is null
+	</select>
+	<select id="findByName" resultType="entity.Fly_plan" parameterType="string">
+		select * from fly_plan where user_name=#{user_name}
+	</select>
+	<insert id="save" parameterType="entity.Fly_plan">
+		insert into fly_plan(area,apply_city,plan_use,max_hight,start_index,end_index,start_time,end_time,user_name) values(#{area},#{apply_city},#{plan_use},#{max_hight},#{start_index},#{end_index},#{start_time},#{end_time},#{user_name})
+	</insert>
+	<update id="update" parameterType="entity.Fly_plan">
+		update fly_plan set status=#{status} where id=#{id}
+	</update>
+	<select id="find" resultType="entity.Fly_plan">
+		select * from fly_plan
+	</select>
+</mapper>
